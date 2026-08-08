@@ -1,0 +1,25 @@
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+</head>
+
+<body class="text-center">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        {{ form.as_p}}
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        <button class="btn btn-primary" type="submit">Sign in</button>
+</body>
+
+</html>
