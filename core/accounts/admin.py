@@ -5,8 +5,8 @@ from .models import User, Profile
 
 class CustomUserAdmin(UserAdmin):
     ordering = ('email',)
-    list_display = ('email', 'is_superuser', 'is_active')
-    list_filter = ('email', 'is_superuser', 'is_active')
+    list_display = ('email', 'is_superuser', 'is_active', 'is_verified')
+    list_filter = ('email', 'is_superuser', 'is_active', 'is_verified')
     
     search_fields = ('email',)    
     
@@ -23,6 +23,7 @@ class CustomUserAdmin(UserAdmin):
                 "is_staff",
                 "is_active",
                 "is_superuser",
+                "is_verified"
             ),
         },
     ),
@@ -37,7 +38,8 @@ class CustomUserAdmin(UserAdmin):
                 "fields":(
                 "is_staff",
                 "is_active",
-                "is_superuser"
+                "is_superuser",
+                "is_verified"
                 )
             }
         )
