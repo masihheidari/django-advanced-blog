@@ -21,6 +21,11 @@ urlpatterns = [
     path('jwt/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('change-password/', views.ChangePasswordApiView.as_view(), name='change-password'),
     path('profile/', views.ProfileApiView.as_view(), name='profile'),
-
+    path('email/', views.TestEmailSend.as_view(), name='email'),
+    path(
+        'activation/confirm/<str:token>/',
+        views.ActivationConfirmApiView.as_view(),
+        name='activation-confirm'
+),
 
 ]

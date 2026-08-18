@@ -1,0 +1,11 @@
+{% block subject %}تایید حساب کاربری{% endblock %}
+
+{% block plain %}
+سلام {{ name }}،
+از ثبت‌نام شما متشکریم.
+{% endblock %}
+
+{% block html %}
+<p>سلام {{ name }}،</p>
+<p>از ثبت‌نام شما متشکریم.</p>
+{% endblock %}
