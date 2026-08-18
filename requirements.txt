@@ -10,3 +10,6 @@ drf-yasg[validation]
 django-templated-email
 
 djangorestframework-simplejwt
+
+black
+flake8

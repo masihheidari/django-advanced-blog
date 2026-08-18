@@ -7,14 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0003_profile'),
-        ('blog', '0002_post_category'),
+        ("accounts", "0003_profile"),
+        ("blog", "0002_post_category"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.profile'),
+            model_name="post",
+            name="author",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="accounts.profile",
+            ),
         ),
     ]

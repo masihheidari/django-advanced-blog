@@ -9,9 +9,7 @@ class PostForm(forms.ModelForm):
         # It should return an HttpResponse.
         form.save()
         return super().form_valid(form)
-     
+
     class Meta:
         model = Post
-        fields = ['author', 'title', 'status', 'category', 'published_date']
-        
-
+        fields = ["author", "title", "status", "category", "published_date"]
