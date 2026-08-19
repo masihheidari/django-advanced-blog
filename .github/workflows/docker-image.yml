@@ -9,15 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
     - name: Setup Docker-Compose
-      run: docker compose up -d
+      run: docker compose build --no-cache && docker compose up -d
+
+    - name: Debug
+      run: docker compose exec -T backend pip show flake8
+
     - name: Run Tests
       run: docker compose exec -T backend sh -c "flake8 && pytest ."
-    - name: Debug installed packages
-      run: |
-         docker compose exec -T backend cat requirements.txt
-          docker compose exec -T backend pip list
-    - name: Debug pip location
-      run: |
-              docker compose exec -T backend python -c "import flake8; print(flake8.__file__)"
-                docker compose exec -T backend pip show flake8
