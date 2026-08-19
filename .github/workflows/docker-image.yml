@@ -10,11 +10,17 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Show requirements.txt on runner
+      run: cat requirements.txt
+
     - name: Setup Docker-Compose
       run: docker compose build --no-cache && docker compose up -d
 
-    - name: Debug
-      run: docker compose exec -T backend pip show flake8
+    - name: Show requirements.txt inside container
+      run: docker compose exec -T backend cat requirements.txt
+
+    - name: Show pip list inside container
+      run: docker compose exec -T backend pip list
 
     - name: Run Tests
       run: docker compose exec -T backend sh -c "flake8 && pytest ."
