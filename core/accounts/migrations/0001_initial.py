@@ -26,9 +26,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "password",
-                    models.CharField(
-                        max_length=128, verbose_name="password"
-                    ),
+                    models.CharField(max_length=128, verbose_name="password"),
                 ),
                 (
                     "last_login",

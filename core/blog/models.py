@@ -9,9 +9,7 @@ from django.urls import reverse
 class Post(models.Model):
     author = models.ForeignKey("accounts.Profile", on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True)
-    category = models.ForeignKey(
-        "Category", on_delete=models.SET_NULL, null=True
-    )
+    category = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=250)
     content = models.TextField()
     # counted_view = models.IntegerField(default=0)
@@ -27,9 +25,7 @@ class Post(models.Model):
         return self.content[0:20]
 
     def get_absolute_api_url(self):
-        return reverse(
-            "blog:api-v1:post-detail", kwargs={"pk": self.pk}
-        )
+        return reverse("blog:api-v1:post-detail", kwargs={"pk": self.pk})
 
 
 class Category(models.Model):
