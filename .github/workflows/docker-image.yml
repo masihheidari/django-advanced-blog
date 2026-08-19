@@ -17,3 +17,7 @@ jobs:
       run: |
          docker compose exec -T backend cat requirements.txt
           docker compose exec -T backend pip list
+    - name: Debug pip location
+      run: |
+              docker compose exec -T backend python -c "import flake8; print(flake8.__file__)"
+                docker compose exec -T backend pip show flake8
