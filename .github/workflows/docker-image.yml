@@ -13,3 +13,7 @@ jobs:
       run: docker compose up -d
     - name: Run Tests
       run: docker compose exec -T backend sh -c "flake8 && pytest ."
+    - name: Debug installed packages
+      run: |
+         docker compose exec -T backend cat requirements.txt
+          docker compose exec -T backend pip list
