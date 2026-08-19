@@ -28,7 +28,7 @@ class Post(models.Model):
 
     def get_absolute_api_url(self):
         return reverse(
-            "blog:api-view-v1:post-detail", kwargs={"pk": self.pk}
+            "blog:api-v1:post-detail", kwargs={"pk": self.pk}
         )
 
 

@@ -38,7 +38,7 @@ class PostListView(LoginRequiredMixin, ListView):
     ordering = "-id"
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
 
     model = Post
 

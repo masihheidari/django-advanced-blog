@@ -6,8 +6,8 @@ from django.views.generic.base import RedirectView
 app_name = "blog"
 
 urlpatterns = [
-    path("fbv_index", views.index_view, name="fbv_index"),
-    path("cbv_index", views.IndexView.as_view(), name="cbv-index"),
+    # path("fbv_index", views.index_view, name="fbv_index"),
+    path("index", views.IndexView.as_view(), name="index"),
     path(
         "go-to-django/",
         views.RedirectToDjango.as_view(),

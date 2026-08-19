@@ -7,4 +7,5 @@ exclude =
     __pycache__,
     venv,
     .env,
-    settings
+    settings.py,
+    __init__
