@@ -43,6 +43,11 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
 
 
+class PostListApiView(TemplateView):
+    template_name = "blog/post_list_api.html"
+
+
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ["title", "status", "category", "published_date"]
