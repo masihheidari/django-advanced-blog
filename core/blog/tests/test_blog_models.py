@@ -1,7 +1,7 @@
 from django.test import TestCase
 from ..models import Post, Category
 from datetime import datetime
-from accounts.models import User, Profile
+from accounts.models import User
 
 
 class TestPostModel(TestCase):
@@ -12,7 +12,6 @@ class TestPostModel(TestCase):
         )
         self.category = Category.objects.create(name="Test Category")
 
-        # signal خودش یک Profile خالی ساخته؛ فقط مقادیرش رو پر می‌کنیم
         self.profile = self.user.profile_set.first()
         self.profile.first_name = "test_first_name"
         self.profile.last_name = "test_last_name"

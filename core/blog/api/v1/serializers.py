@@ -6,7 +6,10 @@ from accounts.models import Profile
 
 class PostSerializer(serializers.ModelSerializer):
     snippet = serializers.ReadOnlyField(source="get_snippet")
-    relative_url = serializers.URLField(source="get_absolute_api_url", read_only=True)
+    relative_url = serializers.URLField(
+        source="get_absolute_api_url",
+        read_only=True
+        )
     category = serializers.SlugRelatedField(
         slug_field="name", queryset=Category.objects.all()
     )

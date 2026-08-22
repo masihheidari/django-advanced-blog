@@ -159,15 +159,12 @@ EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = "noreply@example.com"
 
 
-CELERY_BROKER_URL = 'redis://redis:6379/1'
-CELERY_RESULT_BACKEND = 'redis://redis:6379/1'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+CELERY_BROKER_URL = "redis://redis:6379/1"
+CELERY_RESULT_BACKEND = "redis://redis:6379/1"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
 CELERY_BEAT_SCHEDULE = {
-    'send_email':{
-        'task' : 'accounts.tasks.sendEmail',
-        'schedule' : 5
-    }
+    "send_email": {"task": "accounts.tasks.sendEmail", "schedule": 5}
 }

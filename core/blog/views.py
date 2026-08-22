@@ -4,11 +4,9 @@ from .models import Post
 from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 
@@ -45,7 +43,6 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 
 class PostListApiView(TemplateView):
     template_name = "blog/post_list_api.html"
-
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

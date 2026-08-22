@@ -8,13 +8,15 @@ import pytest
 
 @pytest.fixture
 def common_user():
-    user = User.objects.create_user(email="swdd@kdcdkffk.com", password="1qa@/fkkdle")
+    user = User.objects.create_user(
+        email="swdd@kdcdkffk.com",
+        password="1qa@/fkkdle"
+        )
     return user
 
 
 @pytest.fixture
 def common_profile(common_user):
-    # سیگنال save_profile خودش هنگام ساخت User یک Profile خالی ساخته
     profile = common_user.profile_set.first()
     profile.first_name = "test"
     profile.last_name = "test"

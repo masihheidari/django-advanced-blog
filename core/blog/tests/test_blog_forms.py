@@ -1,5 +1,4 @@
 from django.test import SimpleTestCase
-from django.urls import reverse, resolve
 from ..forms import PostForm
 from datetime import datetime
 

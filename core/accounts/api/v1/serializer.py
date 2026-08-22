@@ -15,12 +15,14 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         if attrs.get("password") != attrs.get("password1"):
-            raise serializers.ValidationError({"detail": "passwords dosent match"})
+            raise serializers.ValidationError(
+                {"detail": "passwords dosent match"})
 
         try:
             validate_password(attrs.get("password"))
         except exceptions.ValidationError as e:
-            raise serializers.ValidationError({"password": list(e.messages)})
+            raise serializers.ValidationError(
+                {"password": list(e.messages)})
         return super().validate(attrs)
 
     def create(self, validated_data):
@@ -36,11 +38,13 @@ class ChangePasswordSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         if attrs.get("new_password") != attrs.get("new_password1"):
-            raise serializers.ValidationError({"detail": "passwords dosent match"})
+            raise serializers.ValidationError(
+                {"detail": "passwords dosent match"})
         try:
             validate_password(attrs.get("new_password"))
         except exceptions.ValidationError as e:
-            raise serializers.ValidationError({"new_password": list(e.messages)})
+            raise serializers.ValidationError(
+                {"new_password": list(e.messages)})
         return super().validate(attrs)
 
 

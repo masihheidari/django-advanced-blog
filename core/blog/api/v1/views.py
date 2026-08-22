@@ -1,29 +1,12 @@
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import (
     IsAuthenticatedOrReadOnly,
-    IsAuthenticated,
-)
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.generics import (
-    GenericAPIView,
-    ListCreateAPIView,
-    RetrieveUpdateDestroyAPIView,
-)
-from rest_framework import mixins
+    )
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework import generics
-from rest_framework import status
-
 from .serializers import PostSerializer, CategorySerializer
 from ...models import Post, Category
 from .permissions import IsOwnerOrReadOnly
 from .paginations import LargeResultsSetPagination
-
-from django.shortcuts import get_object_or_404
-from django.contrib.auth import get_user_model
-
 from django_filters.rest_framework import DjangoFilterBackend
 
 # @api_view(['GET','POST'])
