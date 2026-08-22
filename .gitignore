@@ -179,3 +179,5 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# SECRET_KEY = 'django-insecure-@_y6xv=1jj^f9lscm9q)q_8)cnlx!c(avjn2xhi3#fv7-8lwwq'
