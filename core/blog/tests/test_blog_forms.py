@@ -1,6 +1,7 @@
 from django.test import SimpleTestCase
+from django.utils import timezone
+
 from ..forms import PostForm
-from datetime import datetime
 
 
 class TestPostForm(SimpleTestCase):
@@ -10,8 +11,8 @@ class TestPostForm(SimpleTestCase):
             data={
                 "title": "test",
                 "content": "bio",
-                "status": True,
-                "published_date": datetime.now(),
+                "is_published": True,
+                "published_date": timezone.now(),
             }
         )
         self.assertTrue(form.is_valid())

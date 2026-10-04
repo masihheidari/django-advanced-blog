@@ -94,11 +94,8 @@ class CustomObtainAuthToken(ObtainAuthToken):
         user = serializer.validated_data["user"]
         token, created = Token.objects.get_or_create(user=user)
         return Response(
-            {
-                "token": token.key,
-                "user_id": user.pk, "email": user.email
-             }
-            )
+            {"token": token.key, "user_id": user.pk, "email": user.email}
+        )
 
 
 class CustomDiscardAuthToken(APIView):
@@ -144,17 +141,4 @@ class ProfileApiView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         obj = get_object_or_404(Profile, user=self.request.user)
         return obj
-
-
-class TestEmailSend(generics.GenericAPIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request, *args, **kwargs):
-        email_obj = get_templated_mail(
-            template_name="hello",
-            from_email="admin@admin.com",
-            to=["masih.masih1386@gmail.com"],
-            context={"name": "masih"},
-        )
-        EmailThread(email_obj).start()
-        return Response("email sent")
+    

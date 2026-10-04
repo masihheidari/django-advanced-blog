@@ -1,13 +1,12 @@
 from django.urls import path
 
-from . import views
-
-# from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView,
 )
+
+from . import views
 
 app_name = "api-v1"
 
@@ -27,16 +26,15 @@ urlpatterns = [
         views.CustomDiscardAuthToken.as_view(),
         name="token-logout",
     ),
-    path("jwt/crete/", TokenObtainPairView.as_view(), name="jwt-create"),
+    path("jwt/create/", TokenObtainPairView.as_view(), name="jwt-create"),
     path("jwt/refresh/", TokenRefreshView.as_view(), name="jwt-refresh"),
-    path("jwt/verify/", TokenVerifyView.as_view(), name="token_verify"),
+    path("jwt/verify/", TokenVerifyView.as_view(), name="jwt-verify"),
     path(
         "change-password/",
         views.ChangePasswordApiView.as_view(),
         name="change-password",
     ),
     path("profile/", views.ProfileApiView.as_view(), name="profile"),
-    path("email/", views.TestEmailSend.as_view(), name="email"),
     path(
         "activation/confirm/<str:token>/",
         views.ActivationConfirmApiView.as_view(),

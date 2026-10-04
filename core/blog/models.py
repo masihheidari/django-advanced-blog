@@ -1,23 +1,17 @@
 from django.db import models
 from django.urls import reverse
 
-# User = get_user_model()
 
-
-# Create your models here.
 class Post(models.Model):
     author = models.ForeignKey("accounts.Profile", on_delete=models.CASCADE)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to="posts/", null=True, blank=True)
     category = models.ForeignKey(
-        "Category",
-        on_delete=models.SET_NULL,
-        null=True
-        )
+        "Category", on_delete=models.SET_NULL, null=True
+    )
     title = models.CharField(max_length=250)
     content = models.TextField()
-    # counted_view = models.IntegerField(default=0)
-    status = models.BooleanField(default=False)
-    published_date = models.DateTimeField(null=True)
+    is_published = models.BooleanField(default=False)
+    published_date = models.DateTimeField(null=True, blank=True)
     updated_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add=True)
 

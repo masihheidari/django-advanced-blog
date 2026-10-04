@@ -4,7 +4,7 @@ from django.contrib.auth.models import (
     AbstractBaseUser,
     PermissionsMixin,
 )
-from django.utils.translation import pgettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -13,7 +13,7 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, password, **extra_fields):
         if not email:
-            raise ValueError(_("email!"))
+            raise ValueError(_("The email address is required."))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -27,16 +27,15 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_verified", True)
 
         if extra_fields.get("is_staff") is not True:
-            raise ValueError(_("superuser must be staff"))
+            raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:
-            raise ValueError(_("superuser must be superuser"))
+            raise ValueError(_("Superuser must have is_superuser=True."))
         return self.create_user(email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=250, unique=True)
     is_staff = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)
 
@@ -53,11 +52,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    image = models.ImageField(blank=True, null=True)
-    bio = models.TextField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=255, blank=True)
+    last_name = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to="profiles/", blank=True, null=True)
+    bio = models.TextField(blank=True)
     updated_date = models.DateTimeField(auto_now=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
@@ -66,6 +65,7 @@ class Profile(models.Model):
 
 
 @receiver(post_save, sender=User)
-def save_profile(sender, instance, created, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+        

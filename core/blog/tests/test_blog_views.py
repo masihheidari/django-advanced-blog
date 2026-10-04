@@ -1,8 +1,9 @@
 from django.test import TestCase, Client
 from django.urls import reverse
+from django.utils import timezone
+
 from accounts.models import User
 from blog.models import Post, Category
-from django.utils import timezone
 
 
 class TestBlogView(TestCase):
@@ -14,7 +15,7 @@ class TestBlogView(TestCase):
         )
         self.category = Category.objects.create(name="Test Category")
 
-        self.profile = self.user.profile_set.first()
+        self.profile = self.user.profile
         self.profile.first_name = "test_first_name"
         self.profile.last_name = "test_last_name"
         self.profile.bio = "test_bio"
@@ -24,7 +25,7 @@ class TestBlogView(TestCase):
             title="testtest",
             author=self.profile,
             content="bio",
-            status=True,
+            is_published=True,
             category=self.category,
             published_date=timezone.now(),
         )
